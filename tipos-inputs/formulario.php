@@ -31,9 +31,25 @@
 
     <!-- Checkboxs -->
 
-    <input type="checkbox" name="list1" value="PHP">
+    <!-- <input type="checkbox" name="list1" value="PHP">
     <input type="checkbox" name="list2" value="JavaScript">
-    <input type="checkbox" name="list3" value="Python">
+    <input type="checkbox" name="list3" value="Python"> -->
+
+    <!-- Radios -->
+
+    <!-- <label for="mexico">Mexico</label>
+    <input type="radio" name="pais" value="MEXICO" id="mexico">
+    
+    <label for="colombia">Colombia</label>
+    <input type="radio" name="pais" value="COLOMBIA" id="colombia">
+    
+    <label for="eua">EUA</label>
+    <input type="radio" name="pais" value="EUA" id="eua"> -->
+
+
+    <!-- Multiples archivos -->
+    <label for="galery">Galeria > Carga tus imagenes: </label>
+    <input type="file" name="galeria[]" multiple id="galery">
 
     <button type="submit">Mandar formulario</button>
     </form>
