@@ -7,7 +7,7 @@
     <title>Validaciones</title>
 </head>
 <body>
-    <form action="serve.php">
+    <form action="serve.php" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" id="nombre">
 
