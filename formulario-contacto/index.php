@@ -1,3 +1,38 @@
+<?php
+
+function validate($name, $lastname, $email, $city, $state, $zip_code, $subject, $message, $form) {
+  return !empty($name) && !empty($lastname) && !empty($email) && !empty($city) && !empty($state) && !empty($zip_code) && !empty($subject) && !empty($message);
+}
+
+$status = "";
+
+if(isset($_POST["form"])) {
+
+  if ( validate(...$_POST) ) {
+
+    $name = $_POST["name"];
+    $lastname = $_POST["lastname"];
+    $email = $_POST["email"];
+    $city = $_POST["city"];
+    $zip_code = $_POST["zip_code"];
+    $subject = $_POST["subject"];
+    $message = $_POST["message"];
+
+    // Mandar el correo
+
+    $status = "success";
+
+  }else {
+    
+    $status = "danger";
+
+  }
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,26 +49,33 @@
             <p class="text-base font-semibold text-center text-white">Por favor ingresa tus datos a continuacion...</p>
         </div>
         <div class="w-full h-3/4 bg-white p-6 rounded-2xl shadow-2xl max-w-sm md:max-w-lg lg:max-w-3xl">
-            <div class="hidden w-full h-12 bg-red-500 mb-8 pt-3">
+            
+            <?php if($status === "danger"): ?>
+              <div class="w-full h-12 bg-red-500 mb-8 pt-3">
                 <p class="text-white font-bold text-center">Surgio un problema 🗙 </p>
-            </div>
+              </div>
+            <?php endif; ?>
 
-            <div class="hidden w-full h-12 bg-green-500 mb-8 pt-3">
+            <?php if($status === "success"): ?>
+              <div class="w-full h-12 bg-green-500 mb-8 pt-3">
                 <p class="text-white font-bold text-center">Mensaje enviado con exito ✔</p>
-            </div>
-            <form class="w-full">
+              </div>
+            <?php endif; ?>
+
+
+            <form class="w-full" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="flex flex-wrap -mx-3 mb-6">
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                       Nombre
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Alexis">
+                    <input name="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Alexis">
                   </div>
                   <div class="w-full md:w-1/2 px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                       Apellidos
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Hernandez">
+                    <input name="lastname" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Hernandez">
                   </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-6">
@@ -41,7 +83,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                       Correo Electronico
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="email" placeholder="alexis@gmail.com">
+                    <input name="email" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="email" placeholder="alexis@gmail.com">
                   </div>
                 </div>
                 <div class="flex flex-wrap -mx-3 mb-2">
@@ -49,14 +91,14 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                       Ciudad
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Ciudad de Mexico">
+                    <input name="city" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Ciudad de Mexico">
                   </div>
                   <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                       Estado
                     </label>
                     <div class="relative">
-                      <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                      <select name="state" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                         <option>Tlaxcala</option>
                         <option>Puebla</option>
                         <option>Monterrey</option>
@@ -70,7 +112,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
                       Codigo Postal
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
+                    <input name="zip_code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
                   </div>
                 </div>
 
@@ -80,21 +122,21 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-asunto">
                             Asunto
                         </label>
-                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" id="grid-asunto" placeholder="Solicitud de empleo">
+                        <input name="subject" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" id="grid-asunto" placeholder="Solicitud de empleo">
                     </div>
 
                     <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-mensaje">
                             Mensaje
                         </label>
-                        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="message" id="grid-mensaje"></textarea>
+                        <textarea name="message" class="appearance-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="message" id="grid-mensaje"></textarea>
                     </div>
                 </div>
 
                 <p class="text-gray-600 text-xs italic">Rellena todos los campos</p>
 
                 <div class="w-full h-20 flex justify-end items-end">
-                    <button class="w-36 h-12 bg-gray-800 rounded-lg text-white transition-all duration-300 ease-in-out hover:scale-110 hover:bg-purple-600 hover:text-white">Enviar</button>
+                    <button type="submit" name="form" class="w-36 h-12 bg-gray-800 rounded-lg text-white transition-all duration-300 ease-in-out hover:scale-110 hover:bg-purple-600 hover:text-white">Enviar</button>
                 </div>
 
             </form>
