@@ -574,10 +574,6 @@ video {
   display: flex;
 }
 
-.hidden {
-  display: none;
-}
-
 .h-1\/4 {
   height: 25%;
 }
@@ -729,21 +725,6 @@ video {
   --tw-gradient-to: rgb(168 85 247 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-to-position:  ;
   --tw-gradient-stops: var(--tw-gradient-from), #a855f7 var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-
-.to-pink-300 {
-  --tw-gradient-to: #f9a8d4 var(--tw-gradient-to-position);
-  --tw-gradient-to-position:  ;
-}
-
-.to-pink-700 {
-  --tw-gradient-to: #be185d var(--tw-gradient-to-position);
-  --tw-gradient-to-position:  ;
-}
-
-.to-pink-600 {
-  --tw-gradient-to: #db2777 var(--tw-gradient-to-position);
-  --tw-gradient-to-position:  ;
 }
 
 .to-pink-500 {

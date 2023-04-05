@@ -1,5 +1,7 @@
 <?php
 
+require("server.php");
+
 function validate($name, $lastname, $email, $city, $state, $zip_code, $subject, $message, $form) {
   return !empty($name) && !empty($lastname) && !empty($email) && !empty($city) && !empty($state) && !empty($zip_code) && !empty($subject) && !empty($message);
 }
@@ -18,7 +20,10 @@ if(isset($_POST["form"])) {
     $subject = $_POST["subject"];
     $message = $_POST["message"];
 
+    $body = "$name <$email> te envia el siguiente mensaje: <br><br> $message";
+
     // Mandar el correo
+    sendMail($subject, $body, $email, $name, true);
 
     $status = "success";
 
