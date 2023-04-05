@@ -1,0 +1,28 @@
+{
+  "name": "php-html",
+  "version": "1.0.0",
+  "description": "Integracion de PHP con HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexDev2808/php-html.git"
+  },
+  "keywords": [
+    "php",
+    "tailwind"
+  ],
+  "author": "alexDev2808",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexDev2808/php-html/issues"
+  },
+  "homepage": "https://github.com/alexDev2808/php-html#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1"
+  }
+}
