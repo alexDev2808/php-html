@@ -20,6 +20,16 @@ if(isset($_POST["form"])) {
     $subject = $_POST["subject"];
     $message = $_POST["message"];
 
+    // Sanitizando datos
+    $name = htmlentities($name);
+    $lastname = htmlentities($lastname);
+    $city = htmlentities($city);
+    $subject = htmlentities($subject);
+    $message = htmlentities($message);
+
+    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $zip_code = filter_var($zip_code, FILTER_VALIDATE_INT);
+
     $body = "$name <$email> te envia el siguiente mensaje: <br><br> $message";
 
     // Mandar el correo
