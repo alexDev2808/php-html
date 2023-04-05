@@ -12,14 +12,17 @@ function sendMail($subject, $body, $email, $name, $html = false) {
 
     $phpmailer = new PHPMailer();
     $phpmailer->isSMTP();
-    $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+    // $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+    $phpmailer->Host = 'smtp.gmail.com';
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 2525;
-    $phpmailer->Username = '1b8153b5a608ce';
-    $phpmailer->Password = 'e954652c92fa07';
+    $phpmailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+    // Ese puerto tiene seguridad
+    $phpmailer->Port = 465;
+    $phpmailer->Username = 'alexis.tenorio.hernandez@gmail.com';
+    $phpmailer->Password = 'tvqtfxuxkjytfguz';
 
     // Integrando destinatarios
-    $phpmailer->setFrom('contact@proton.me', 'Mi empresa');
+    $phpmailer->setFrom('contact@proton.me', 'Formularios Alexis');
     $phpmailer->addAddress($email, $name); 
 
 

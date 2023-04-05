@@ -44,6 +44,7 @@ if(isset($_POST["form"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="./icons8-componer-correo-32.png">
     <link rel="stylesheet" href="./css/tailwind.css">
     <title>Formulario de Contacto</title>
 </head>
